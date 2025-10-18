@@ -26,7 +26,7 @@ class auto_open_notes(sublime_plugin.EventListener):
 				if len(w.views()) == 0:                              # make sure window has more than one view
 					for folder in w.folders():                         # for autoopen files, check each folder in the project
 						autoopen = os.path.join(folder,                  # look for a .sublime.autoopnen file
-							'.sublime.autoopen')                           # look for a .sublime.autoopnen file
+							settings.get('auto_open_file'))                # look for a .sublime.autoopnen file
 						if os.path.exists(autoopen):                     # if an autoopen file exists, open each file listed in there
 							autoopen_defaults = False                      # a .sublime.autoopen file was found, so don't open notes.txt etc by default
 							for line in [x.strip()                         # process each file listed
@@ -37,8 +37,8 @@ class auto_open_notes(sublime_plugin.EventListener):
 									w.open_file(file)                          # open it
 					if autoopen_defaults:                              # if there isn't a .sublime.autoopen file, then check the defaults
 						if len(w.folders()) == 1:                        # make sure window has exactly one folder
-							for x in settings['folders']:                  # itterate current and deeper folders
-								for y in AutoOpenNotes['files']:             # check each type of file supported
+							for x in settings.get('folders'):              # itterate current and deeper folders
+								for y in settings.get('files'):              # check each type of file supported
 									folder = os.path.join(w.folders()[0], x)   # check folder depth
 									file = os.path.join(folder, y)             # look for file in the main folder
 									if os.path.exists(file):                   # if it exists

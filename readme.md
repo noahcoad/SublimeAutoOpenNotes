@@ -8,6 +8,8 @@ When a new window is opened with a single folder:
 1. A `.sublime.autoopen` file is looked for in the folder.  If it exists, each file listed in the file is then opened.
 2. Otherwise it'll look for a `notes.txt`, `notes.md`, `readme.md`, `readme.txt`, then `readme` files in that order in the root folder then a `wiki` folder and opens the first it finds.
 
+The files and folders looked for by default can be changed in the package settings.
+
 ## To Use
 Try having a notes.txt or readme.md file in a folder and opening that folder in sublime.
 
@@ -32,4 +34,3 @@ Shout out to [@josiahcoad](https://github.com/josiahcoad) for code reviewing and
 ## Also
 Check out my other [Sublime Text packages](https://gist.github.com/noahcoad/712ba4e38467f5126eb8cedd9ecbc842)
 
-Started 2018-10-11

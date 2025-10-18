@@ -1,4 +1,5 @@
 {
 	"files": ["notes.txt", "notes.md", "readme.txt", "readme.md", "readme"],
 	"folders": [".", "wiki"],
+	"auto_open_file": ".sublime.autoopen"
 }
