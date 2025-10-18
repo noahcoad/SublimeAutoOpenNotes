@@ -1,13 +1,14 @@
-# Auto Open Notes - a Sublime Text 3 Plugin
+# Auto Open Notes
+A [Sublime Text](https://www.sublimetext.com/) Package
 
 When a new window is opened with a single folder:
 1. A `.sublime.autoopen` file is looked for in the folder.  If it exists, each file listed in the file is then opened.
 2. Otherwise it'll look for a `notes.txt`, `readme.md`, `readme.txt`, then `readme` files in that order and opens the first it finds.
 
+Started 2018-10-11
 
 ## To Install
 Use WBond's [Package Control](https://packagecontrol.io/)
-
 
 ## To Use
 Try having a notes.txt or readme.md file in a folder and opening that folder in sublime.
@@ -16,6 +17,12 @@ Try having a notes.txt or readme.md file in a folder and opening that folder in 
     echo hello world > ~/tmp/notes.txt
     subl ~/tmp
 
+OR
+
+Put the files you want to be opened when this folder is opened into a `.sublime.autoopen` file, like:
+
+    # .sublime.autoopen contents
+    my_other_note_file.md
 
 ## See Also
 Check out my other Sublime Text 3 plugins:

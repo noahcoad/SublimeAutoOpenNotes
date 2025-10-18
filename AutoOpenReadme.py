@@ -12,7 +12,8 @@ import sublime, sublime_plugin
 import os.path
 
 window_markers = []
-files = ['notes.txt', 'readme.md', 'readme.txt', 'readme']
+files = ['notes.txt', 'notes.md', 'readme.txt', 'readme.md', 'readme']
+folders = ['.', 'wiki']
 
 class auto_open_notes(sublime_plugin.EventListener):
 	def on_new_async(self, view):
@@ -37,11 +38,13 @@ class auto_open_notes(sublime_plugin.EventListener):
 									w.open_file(file)                          # open it
 					if autoopen_defaults:                              # if there isn't a .sublime.autoopen file, then check the defaults
 						if len(w.folders()) == 1:                        # make sure window has exactly one folder
-							for x in files:                                # check each type of file supported
-								file = os.path.join(w.folders()[0], x)       # look for file in the main folder
-								if os.path.exists(file):                     # if it exists
-									w.open_file(file)                          # open the file 
-									return                                     # and we're done
+							for x in folders:									             # itterate current and deeper folders
+								for y in files:                              # check each type of file supported
+									folder = os.path.join(w.folders()[0], x)   # check folder depth
+									file = os.path.join(folder, y)             # look for file in the main folder
+									if os.path.exists(file):                   # if it exists
+										w.open_file(file)                        # open the file 
+										return                                   # and we're done
 
 
 # p.s. Yes, I'm using hard tabs for indentation.  bite me =P
