@@ -1,0 +1,4 @@
+{
+	"files": ["notes.txt", "notes.md", "readme.txt", "readme.md", "readme"],
+	"folders": [".", "wiki"],
+}
