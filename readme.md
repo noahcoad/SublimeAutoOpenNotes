@@ -6,7 +6,7 @@ A [Sublime Text](https://www.sublimetext.com/) Package
 
 When a new window is opened with a single folder:
 1. A `.sublime.autoopen` file is looked for in the folder.  If it exists, each file listed in the file is then opened.
-2. Otherwise it'll look for a `notes.txt`, `notes.md`, `readme.md`, `readme.txt`, then `readme` files in that order in the root folder then a `wiki` folder and opens the first it finds.
+2. Otherwise it'll look for a `notes.txt`, `notes.md`, `readme.md`, `readme.txt`, then `readme` files in that order in the root folder, then a `docs` folder, then a `wiki` folder, and opens the first it finds.
 
 The files and folders looked for by default can be changed in the package settings.
 
