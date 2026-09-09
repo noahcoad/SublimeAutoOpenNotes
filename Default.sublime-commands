@@ -1,0 +1,10 @@
+[
+	{
+		"caption": "Preferences: Auto Open Readme Settings",
+		"command": "edit_settings",
+		"args": {
+			"base_file": "${packages}/AutoOpenReadme/AutoOpenReadme.sublime-settings",
+			"default": "{\n\t$0\n}\n"
+		}
+	}
+]
