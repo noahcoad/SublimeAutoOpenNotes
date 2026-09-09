@@ -12,11 +12,14 @@ import sublime, sublime_plugin
 import os.path
 
 window_markers = []
-settings = sublime.load_settings("AutoOpenReadme.sublime-settings")
+
+def settings():                                            # load lazily -- the API isn't ready at import time on ST3
+	return sublime.load_settings("AutoOpenReadme.sublime-settings")
 
 class auto_open_readme(sublime_plugin.EventListener):
 	def on_new_async(self, view):
 		autoopen_defaults = True
+		s = settings()                                         # safe here, we're well past plugin_loaded()
 		global window_markers                                    # track state across events
 		w = view.window() if view else None                      # grab the window ONCE -- calling window() twice races
 		if w:                                                    # on the async worker the view can detach between calls
@@ -26,7 +29,7 @@ class auto_open_readme(sublime_plugin.EventListener):
 				if len(w.views()) == 0:                              # make sure window has more than one view
 					for folder in w.folders():                         # for autoopen files, check each folder in the project
 						autoopen = os.path.join(folder,                  # look for a .sublime.autoopnen file
-							settings.get('auto_open_file'))                # look for a .sublime.autoopnen file
+							s.get('auto_open_file'))                       # look for a .sublime.autoopnen file
 						if os.path.exists(autoopen):                     # if an autoopen file exists, open each file listed in there
 							autoopen_defaults = False                      # a .sublime.autoopen file was found, so don't open notes.txt etc by default
 							with open(autoopen) as f:                      # close the handle when we're done -- leaks bite Windows users
@@ -39,8 +42,8 @@ class auto_open_readme(sublime_plugin.EventListener):
 									w.open_file(file)                          # open it
 					if autoopen_defaults:                              # if there isn't a .sublime.autoopen file, then check the defaults
 						if len(w.folders()) == 1:                        # make sure window has exactly one folder
-							for x in settings.get('folders'):              # itterate current and deeper folders
-								for y in settings.get('files'):              # check each type of file supported
+							for x in s.get('folders'):                     # itterate current and deeper folders
+								for y in s.get('files'):                     # check each type of file supported
 									folder = os.path.join(w.folders()[0], x)   # check folder depth
 									file = os.path.join(folder, y)             # look for file in the main folder
 									if os.path.exists(file):                   # if it exists

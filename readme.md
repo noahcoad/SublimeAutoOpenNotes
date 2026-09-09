@@ -1,4 +1,4 @@
-# Auto Open Readme
+# AutoOpenReadme
 
 A [Sublime Text](https://www.sublimetext.com/) Package
 
@@ -9,8 +9,8 @@ When a new window is opened with a single folder:
 2. Otherwise it'll look for a `notes.txt`, `notes.md`, `readme.md`, `readme.txt`, then `readme` files in that order in the root folder, then a `docs` folder, then a `wiki` folder, and opens the first it finds.
 
 The files and folders looked for by default can be changed in the package settings, at
-*Preferences → Package Settings → Auto Open Readme → Settings*, or from the command palette
-via *Preferences: Auto Open Readme Settings*.
+*Preferences → Package Settings → AutoOpenReadme → Settings*, or from the command palette
+via *Preferences: AutoOpenReadme Settings*.
 
 This package adds no commands and no key bindings -- it just listens for new windows.
 

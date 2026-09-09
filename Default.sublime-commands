@@ -1,6 +1,6 @@
 [
 	{
-		"caption": "Preferences: Auto Open Readme Settings",
+		"caption": "Preferences: AutoOpenReadme Settings",
 		"command": "edit_settings",
 		"args": {
 			"base_file": "${packages}/AutoOpenReadme/AutoOpenReadme.sublime-settings",
