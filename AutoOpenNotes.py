@@ -18,8 +18,8 @@ class auto_open_notes(sublime_plugin.EventListener):
 	def on_new_async(self, view):
 		autoopen_defaults = True
 		global window_markers                                    # track state across events
-		if view and view.window():                               # ensure window is live
-			w = view.window()                                      # keep reference to this window
+		w = view.window() if view else None                      # grab the window ONCE -- calling window() twice races
+		if w:                                                    # on the async worker the view can detach between calls
 			wid = str(w.id())                                      # get id of the window to prevent re-opening file
 			if wid not in window_markers:                          # if this window hasn't had a default open yet
 				window_markers.append(wid)                           # keep track we've already tried to open a file for this window
