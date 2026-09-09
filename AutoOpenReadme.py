@@ -1,20 +1,20 @@
 #
-# Automatically opens notes files when a new window is created with a single folder
+# Automatically opens readme/notes files when a new window is created with a single folder
 #
 # place a ".sublime.autoopen" file in a folder with a file name per line to
 # list the files that should automatically be opened when this folder is opened
 # that will override tring to open the default notes.txt, readme.md, readme files
 #
-# https://github.com/noahcoad/SublimeAutoOpenNotes
+# https://github.com/noahcoad/SublimeAutoOpenReadme
 #
 
 import sublime, sublime_plugin
 import os.path
 
 window_markers = []
-settings = sublime.load_settings("AutoOpenNotes.sublime-settings")
+settings = sublime.load_settings("AutoOpenReadme.sublime-settings")
 
-class auto_open_notes(sublime_plugin.EventListener):
+class auto_open_readme(sublime_plugin.EventListener):
 	def on_new_async(self, view):
 		autoopen_defaults = True
 		global window_markers                                    # track state across events
@@ -29,8 +29,10 @@ class auto_open_notes(sublime_plugin.EventListener):
 							settings.get('auto_open_file'))                # look for a .sublime.autoopnen file
 						if os.path.exists(autoopen):                     # if an autoopen file exists, open each file listed in there
 							autoopen_defaults = False                      # a .sublime.autoopen file was found, so don't open notes.txt etc by default
+							with open(autoopen) as f:                      # close the handle when we're done -- leaks bite Windows users
+								lines = f.readlines()                        # read the whole list up front
 							for line in [x.strip()                         # process each file listed
-								for x in open(autoopen).readlines()          # in the .sublime.autoopen file
+								for x in lines                               # in the .sublime.autoopen file
 									if len(x) > 0 and x[0:1] != "#"]:          # get a file name on each line, ignore lines starting with "#"
 								file = os.path.join(folder, line)            # use project folder as base
 								if os.path.exists(file):                     # check to see if the file exists
@@ -42,12 +44,5 @@ class auto_open_notes(sublime_plugin.EventListener):
 									folder = os.path.join(w.folders()[0], x)   # check folder depth
 									file = os.path.join(folder, y)             # look for file in the main folder
 									if os.path.exists(file):                   # if it exists
-										w.open_file(file)                        # open the file 
+										w.open_file(file)                        # open the file
 										return                                   # and we're done
-
-
-# p.s. Yes, I'm using hard tabs for indentation.  bite me =P
-# set tabs to whatever level of indentation you like in your editor 
-# for crying out loud, at least they're consistent here, and use 
-# the ST3 command "Indentation: Convert to Spaces", which will convert
-# to spaces if you really need to be part of the 'soft tabs only' crowd =)

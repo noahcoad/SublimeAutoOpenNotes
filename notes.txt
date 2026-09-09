@@ -1,10 +1,15 @@
 Development Notes
-AutoOpenNotes.py
+AutoOpenReadme.py
 started 2018-10-11
 ~/txt/my/cmd_git_gh.txt
 ~/code/prj/sublime/publishing_plugins.txt
 
-considering new names
+renamed 2026-09-08, AutoOpenNotes -> AutoOpenReadme
+	package name, repo, folder, settings file, class, menu caption all match now
+	braver on PR #9221: "'auto open notes' didn't immediately mean anything to me,
+	whereas 'auto open readme' kind of does"
+
+considering new names (settled, see above)
 	https://claude.ai/chat/1a06b838-669d-4087-8ed0-99a54c4a9e65
 	nominations
 		Auto Open Files
