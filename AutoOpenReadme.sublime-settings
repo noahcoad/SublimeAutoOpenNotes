@@ -1,5 +1,12 @@
 {
-	"files": ["notes.txt", "notes.md", "readme.txt", "readme.md", "readme"],
+	// Files to look for, in order. The first one found wins.
+	"files": ["readme.md", "readme.txt", "readme", "notes.md", "notes.txt"],
+
+	// Folders to look in, in order, relative to the folder you opened.
+	// "." is the folder root.
 	"folders": [".", "docs", "wiki"],
+
+	// A per-folder override file. If a folder contains this, the files it
+	// lists are opened instead of anything in "files" above.
 	"auto_open_file": ".sublime.autoopen"
 }
